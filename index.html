@@ -20,7 +20,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Partículas de fondo */
         .particles {
             position: fixed;
             top: 0;
@@ -42,19 +41,10 @@
         }
 
         @keyframes float {
-            0%, 100% { 
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            50% {
-                transform: translateY(-100vh) translateX(50px);
-            }
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            50% { transform: translateY(-100vh) translateX(50px); }
         }
 
         .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
@@ -68,7 +58,6 @@
         .particle:nth-child(9) { left: 90%; animation-delay: 1.5s; }
         .particle:nth-child(10) { left: 15%; animation-delay: 3.5s; }
 
-        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
@@ -171,16 +160,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
-                box-shadow: 
-                    0 0 30px rgba(147, 112, 219, 0.6),
-                    0 0 60px rgba(186, 85, 211, 0.4);
-            }
-            50% {
-                box-shadow: 
-                    0 0 50px rgba(147, 112, 219, 0.8),
-                    0 0 100px rgba(186, 85, 211, 0.6);
-            }
+            0%, 100% { box-shadow: 0 0 30px rgba(147, 112, 219, 0.6), 0 0 60px rgba(186, 85, 211, 0.4); }
+            50% { box-shadow: 0 0 50px rgba(147, 112, 219, 0.8), 0 0 100px rgba(186, 85, 211, 0.6); }
         }
 
         .profile-photo::before {
@@ -190,19 +171,11 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: conic-gradient(
-                transparent, 
-                rgba(147, 112, 219, 0.4), 
-                transparent 30%
-            );
+            background: conic-gradient(transparent, rgba(147, 112, 219, 0.4), transparent 30%);
             animation: rotate 4s linear infinite;
         }
 
-        @keyframes rotate {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
 
         .profile-photo:hover {
             transform: scale(1.08) rotate(5deg);
@@ -222,14 +195,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .description {
@@ -242,10 +209,7 @@
             animation: fadeInUp 1s ease 0.2s both;
         }
 
-        /* Projects Section */
-        .projects-section {
-            margin: 5rem 0;
-        }
+        .projects-section { margin: 5rem 0; }
 
         .projects-title {
             text-align: center;
@@ -300,9 +264,7 @@
             transition: left 0.6s;
         }
 
-        .project-card:hover::before {
-            left: 100%;
-        }
+        .project-card:hover::before { left: 100%; }
 
         .project-card:hover {
             transform: translateY(-20px) scale(1.03);
@@ -322,8 +284,68 @@
             transition: transform 0.5s ease;
         }
 
-        .project-card:hover .project-image {
-            transform: scale(1.1);
+        .project-card:hover .project-image { transform: scale(1.1); }
+
+        /* Placeholder image for projects without real image */
+        .project-image-placeholder {
+            width: 100%;
+            height: 220px;
+            border-radius: 25px 25px 0 0;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.8rem;
+            overflow: hidden;
+        }
+
+        .project-card:hover .project-image-placeholder { transform: scale(1.05); }
+
+        .placeholder-moral-panic {
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 40%, #0d1117 100%);
+        }
+
+        .placeholder-cube-cleaners {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0f2744 100%);
+        }
+
+        .placeholder-icon {
+            font-size: 4rem;
+            filter: drop-shadow(0 0 15px rgba(147, 112, 219, 0.8));
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .placeholder-label {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Badge "JAM" */
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #ff6b35, #f7c59f);
+            color: #1a0a00;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.5);
         }
 
         .project-content {
@@ -346,10 +368,7 @@
             font-size: 1rem;
         }
 
-        /* Skills Section */
-        .skills-section {
-            margin: 5rem 0;
-        }
+        .skills-section { margin: 5rem 0; }
 
         .skills-title {
             text-align: center;
@@ -458,10 +477,7 @@
             transition: width 0.4s, height 0.4s;
         }
 
-        .skill-item:hover::before {
-            width: 200%;
-            height: 200%;
-        }
+        .skill-item:hover::before { width: 200%; height: 200%; }
 
         .skill-item:hover {
             background: linear-gradient(135deg, rgba(147, 112, 219, 0.4), rgba(186, 85, 211, 0.4));
@@ -470,7 +486,6 @@
             border-color: #ba55d3;
         }
 
-        /* Contact Section */
         .contact-section {
             text-align: center;
             margin: 5rem 0;
@@ -535,10 +550,7 @@
             border-radius: 50%;
         }
 
-        .contact-link:hover::before {
-            width: 300%;
-            height: 300%;
-        }
+        .contact-link:hover::before { width: 300%; height: 300%; }
 
         .contact-link:hover {
             transform: translateY(-8px) scale(1.08);
@@ -560,7 +572,6 @@
             z-index: 1;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -577,14 +588,9 @@
             animation: fadeIn 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .modal.show {
-            display: flex;
-        }
+        .modal.show { display: flex; }
 
         .modal-content {
             background: linear-gradient(135deg, rgba(30, 30, 60, 0.95), rgba(20, 20, 40, 0.95));
@@ -599,18 +605,19 @@
             animation: slideUp 0.4s ease;
             border: 2px solid rgba(147, 112, 219, 0.4);
             box-shadow: 0 30px 100px rgba(147, 112, 219, 0.4);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(147, 112, 219, 0.7) rgba(20, 20, 40, 0.9);
         }
 
         @keyframes slideUp {
-            from {
-                transform: translateY(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
+
+        .modal-content::-webkit-scrollbar { width: 14px; }
+        .modal-content::-webkit-scrollbar-track { background: rgba(20, 20, 40, 0.9); border-radius: 10px; margin: 5px 0; }
+        .modal-content::-webkit-scrollbar-thumb { background: linear-gradient(180deg, rgba(147, 112, 219, 0.7), rgba(186, 85, 211, 0.9)); border-radius: 10px; border: 3px solid rgba(20, 20, 40, 0.9); }
+        .modal-content::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, rgba(147, 112, 219, 0.9), rgba(186, 85, 211, 1)); }
 
         .close-btn {
             position: absolute;
@@ -637,35 +644,6 @@
             box-shadow: 0 0 20px rgba(186, 85, 211, 0.6);
         }
 
-        /* Scrollbar */
-        .modal-content::-webkit-scrollbar {
-            width: 14px;
-        }
-
-        .modal-content::-webkit-scrollbar-track {
-            background: rgba(20, 20, 40, 0.9);
-            border-radius: 10px;
-            margin: 5px 0;
-        }
-
-        .modal-content::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, rgba(147, 112, 219, 0.7), rgba(186, 85, 211, 0.9));
-            border-radius: 10px;
-            border: 3px solid rgba(20, 20, 40, 0.9);
-            transition: all 0.3s ease;
-        }
-
-        .modal-content::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, rgba(147, 112, 219, 0.9), rgba(186, 85, 211, 1));
-            box-shadow: 0 0 15px rgba(186, 85, 211, 0.6);
-        }
-
-        .modal-content {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(147, 112, 219, 0.7) rgba(20, 20, 40, 0.9);
-        }
-
-        /* Modal Content */
         .project-header {
             margin-bottom: 2.5rem;
             border-bottom: 3px solid rgba(147, 112, 219, 0.4);
@@ -751,16 +729,9 @@
             font-size: 1.05rem;
         }
 
-        .section-content ul {
-            padding-left: 1.5rem;
-            margin: 0.8rem 0;
-        }
+        .section-content ul { padding-left: 1.5rem; margin: 0.8rem 0; }
+        .section-content li { margin-bottom: 0.7rem; }
 
-        .section-content li {
-            margin-bottom: 0.7rem;
-        }
-
-        /* Gallery */
         .gallery-section {
             background: rgba(25, 25, 45, 0.7);
             border-radius: 20px;
@@ -828,10 +799,7 @@
             box-shadow: 0 0 20px rgba(186, 85, 211, 0.6);
         }
 
-        .gallery-thumbnail:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
+        .gallery-thumbnail:hover { opacity: 1; transform: scale(1.1); }
 
         .nav-button {
             background: linear-gradient(135deg, rgba(147, 112, 219, 0.3), rgba(186, 85, 211, 0.3));
@@ -856,50 +824,20 @@
             box-shadow: 0 5px 20px rgba(186, 85, 211, 0.5);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .name {
-                font-size: 2.8rem;
-            }
-
-            .description {
-                font-size: 1.1rem;
-            }
-
-            .skills-categories {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-            }
-
-            .project-meta {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-content {
-                padding: 2rem;
-            }
-
-            .project-title-main {
-                font-size: 2.2rem;
-            }
-
-            .gallery-display {
-                height: 280px;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
+            .name { font-size: 2.8rem; }
+            .description { font-size: 1.1rem; }
+            .skills-categories { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; align-items: center; gap: 1.5rem; }
+            .project-meta { grid-template-columns: 1fr; }
+            .modal-content { padding: 2rem; }
+            .project-title-main { font-size: 2.2rem; }
+            .gallery-display { height: 280px; }
+            .nav-links { gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Partículas -->
     <div class="particles">
         <div class="particle"></div>
         <div class="particle"></div>
@@ -913,7 +851,6 @@
         <div class="particle"></div>
     </div>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">Jan Capdevila</div>
@@ -941,6 +878,37 @@
         <div class="projects-section" id="projects">
             <h2 class="projects-title">My Projects</h2>
             <div class="projects-grid">
+
+                <!-- NEW: Moral Panic -->
+                <div class="project-card" onclick="openProjectModal('moralPanic')">
+                    <div class="project-image-placeholder placeholder-moral-panic">
+                        <div class="project-badge">🎮 Game Jam</div>
+                        <span class="placeholder-icon">🕹️</span>
+                        <span class="placeholder-label">Coming soon</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Moral Panic</h3>
+                        <p class="project-description">
+                            Puzzle game presented at Tecnojam 2026
+                        </p>
+                    </div>
+                </div>
+
+                <!-- NEW: Cube Cleaners -->
+                <div class="project-card" onclick="openProjectModal('cubeClearners')">
+                    <div class="project-image-placeholder placeholder-cube-cleaners">
+                        <span class="placeholder-icon">🤖</span>
+                        <span class="placeholder-label">Coming soon</span>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Cube Cleaners</h3>
+                        <p class="project-description">
+                            1v1v1v1 party game — robots collecting trash
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Existing: Wings Of Redemption -->
                 <div class="project-card" onclick="openProjectModal('proyecto1')">
                     <img src="PgWoR.png" alt="Wings Of Redemption" class="project-image">
                     <div class="project-content">
@@ -950,8 +918,10 @@
                         </p>
                     </div>
                 </div>
+
+                <!-- Existing: Ratting Around -->
                 <div class="project-card" onclick="openProjectModal('proyecto2')">
-                    <img src="RattinAround.png" alt="Alien Cocktail" class="project-image">
+                    <img src="RattinAround.png" alt="Ratting Around" class="project-image">
                     <div class="project-content">
                         <h3 class="project-title">Ratting Around</h3>
                         <p class="project-description">
@@ -959,6 +929,7 @@
                         </p>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -990,7 +961,7 @@
         </div>
     </div>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <div class="contact-section" id="contact">
         <h2 class="contact-title">Connect with me</h2>
         <div class="contact-links">
@@ -1024,6 +995,38 @@
         let currentVideoIndex = 0;
 
         const projectsData = {
+            moralPanic: {
+                title: "Moral Panic",
+                subtitle: "Puzzle game — Tecnojam 2026",
+                description: "Game presented at Tecnojam 2026. You play as a video game developer living under an authoritarian government that is heavily censoring creative content. Your goal is to develop a video game despite the government's constant blocks and restrictions.",
+                role: "Game Developer",
+                technologies: ["Unity", "C#"],
+                period: "Game Jam",
+                features: [
+                    "Puzzle-based gameplay",
+                    "Narrative driven experience",
+                    "Censorship and creativity as core themes",
+                    "Developed under Game Jam time pressure"
+                ],
+                contribution: "Developed for Tecnojam 2026. Full development of puzzle mechanics and game logic.",
+                media: []
+            },
+            cubeClearners: {
+                title: "Cube Cleaners",
+                subtitle: "1v1v1v1 party game",
+                description: "A chaotic 1v1v1v1 party game where each player controls a robot that must collect trash from the map and bring it back to their own base. The catch: other players can stun you and steal your garbage, making every run a risk.",
+                role: "Game Developer",
+                technologies: ["Unity", "C#"],
+                period: "TBD",
+                features: [
+                    "4-player local multiplayer",
+                    "Stun and steal mechanics",
+                    "Fast-paced and chaotic",
+                    "Strategy and risk management"
+                ],
+                contribution: "Core gameplay mechanics, robot controls, stun system and multiplayer logic.",
+                media: []
+            },
             proyecto1: {
                 title: "Wings Of Redemption",
                 subtitle: "Autorruner speed based platformer",
@@ -1064,25 +1067,6 @@
                     { type: 'image', src: "RattinAround.png" },
                     { type: 'image', src: "RattinAround2.png" },
                     { type: 'image', src: "RattinAround3.png" }
-                ]
-            },
-            proyecto3: {
-                title: "Warhammer 40K: The Last Marine",
-                subtitle: "THE LAST MARINE",
-                description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme. A team of 40 people divided by different departments carried out this project.",
-                role: "Level Designer, GA, Audio Designer & VPL Artist",
-                technologies: ["Coffee Engine", "Visual Studio", "Lua", "Blender"],
-                period: "6 Months",
-                features: [
-                    "Third-person action game",
-                    "Proprietary engine development",
-                    "Warhammer 40K universe",
-                    "Lua scripting implementation"
-                ],
-                contribution: "I was responsible for implementing the AI behavior and navigation for the enemy Support and worked on the first interaction for the enemy Tank, Enemy boss and helped with other AI behaviors as needed.",
-                media: [                    
-                    { type: 'video', src: "pNp_OPTwnTo" },
-                    { type: 'image', src: "images/w40k.png" }
                 ]
             }
         };
@@ -1143,7 +1127,6 @@
                                 ${renderImage(currentProjectImages[0])}
                             </div>
                         </div>
-                        
                         ${currentProjectImages.length > 1 ? `
                             <div class="gallery-nav">
                                 <button class="nav-button" onclick="previousImage()">‹</button>
@@ -1169,7 +1152,6 @@
                                 ${renderVideo(currentProjectVideos[0])}
                             </div>
                         </div>
-                        
                         ${currentProjectVideos.length > 1 ? `
                             <div class="gallery-nav">
                                 <button class="nav-button" onclick="previousVideo()">‹</button>
@@ -1207,102 +1189,48 @@
             `;
         }
 
-        function changeImage(index) {
-            currentImageIndex = index;
-            updateImageDisplay();
-        }
-
-        function previousImage() {
-            currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentProjectImages.length - 1;
-            updateImageDisplay();
-        }
-
-        function nextImage() {
-            currentImageIndex = currentImageIndex < currentProjectImages.length - 1 ? currentImageIndex + 1 : 0;
-            updateImageDisplay();
-        }
+        function changeImage(index) { currentImageIndex = index; updateImageDisplay(); }
+        function previousImage() { currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentProjectImages.length - 1; updateImageDisplay(); }
+        function nextImage() { currentImageIndex = currentImageIndex < currentProjectImages.length - 1 ? currentImageIndex + 1 : 0; updateImageDisplay(); }
 
         function updateImageDisplay() {
             const imageMain = document.getElementById('imageGalleryMain');
             const thumbnails = document.querySelectorAll('.gallery-section:nth-of-type(1) .gallery-thumbnail');
-            
             if (imageMain && currentProjectImages[currentImageIndex]) {
                 imageMain.innerHTML = renderImage(currentProjectImages[currentImageIndex]);
             }
-            
-            thumbnails.forEach((thumb, index) => {
-                thumb.classList.toggle('active', index === currentImageIndex);
-            });
+            thumbnails.forEach((thumb, index) => { thumb.classList.toggle('active', index === currentImageIndex); });
         }
 
-        function changeVideo(index) {
-            currentVideoIndex = index;
-            updateVideoDisplay();
-        }
-
-        function previousVideo() {
-            currentVideoIndex = currentVideoIndex > 0 ? currentVideoIndex - 1 : currentProjectVideos.length - 1;
-            updateVideoDisplay();
-        }
-
-        function nextVideo() {
-            currentVideoIndex = currentVideoIndex < currentProjectVideos.length - 1 ? currentVideoIndex + 1 : 0;
-            updateVideoDisplay();
-        }
+        function changeVideo(index) { currentVideoIndex = index; updateVideoDisplay(); }
+        function previousVideo() { currentVideoIndex = currentVideoIndex > 0 ? currentVideoIndex - 1 : currentProjectVideos.length - 1; updateVideoDisplay(); }
+        function nextVideo() { currentVideoIndex = currentVideoIndex < currentProjectVideos.length - 1 ? currentVideoIndex + 1 : 0; updateVideoDisplay(); }
 
         function updateVideoDisplay() {
             const videoMain = document.getElementById('videoGalleryMain');
             const thumbnails = document.querySelectorAll('.gallery-section:nth-of-type(2) .gallery-thumbnail');
-            
             if (videoMain && currentProjectVideos[currentVideoIndex]) {
                 videoMain.innerHTML = renderVideo(currentProjectVideos[currentVideoIndex]);
             }
-            
-            thumbnails.forEach((thumb, index) => {
-                thumb.classList.toggle('active', index === currentVideoIndex);
-            });
+            thumbnails.forEach((thumb, index) => { thumb.classList.toggle('active', index === currentVideoIndex); });
         }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('show');
-        }
+        function closeModal(modalId) { document.getElementById(modalId).classList.remove('show'); }
 
         window.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) {
-                e.target.classList.remove('show');
-            }
+            if (e.target.classList.contains('modal')) { e.target.classList.remove('show'); }
         });
 
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
+            if (section) { section.scrollIntoView({ behavior: 'smooth' }); }
         }
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                document.querySelectorAll('.modal.show').forEach(modal => {
-                    modal.classList.remove('show');
-                });
+                document.querySelectorAll('.modal.show').forEach(modal => { modal.classList.remove('show'); });
             }
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
