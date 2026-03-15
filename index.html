@@ -863,7 +863,6 @@
     </nav>
 
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div class="profile-photo">
                 <img src="perfil.jpg" alt="Profile Photo" style="width:100%; height:100%; border-radius:50%;">
@@ -874,18 +873,12 @@
             </p>
         </div>
 
-        <!-- Projects -->
         <div class="projects-section" id="projects">
             <h2 class="projects-title">My Projects</h2>
             <div class="projects-grid">
 
-                <!-- NEW: Moral Panic -->
                 <div class="project-card" onclick="openProjectModal('moralPanic')">
-                    <div class="project-image-placeholder placeholder-moral-panic">
-                        <div class="project-badge">🎮 Game Jam</div>
-                        <span class="placeholder-icon">🕹️</span>
-                        <span class="placeholder-label">Coming soon</span>
-                    </div>
+                    <img src="MoralPanic_Gif1.gif" alt="Moral Panic" class="project-image">
                     <div class="project-content">
                         <h3 class="project-title">Moral Panic</h3>
                         <p class="project-description">
@@ -894,9 +887,8 @@
                     </div>
                 </div>
 
-                <!-- NEW: Cube Cleaners -->
                 <div class="project-card" onclick="openProjectModal('cubeClearners')">
-                    <div class="project-image-placeholder placeholder-cube-cleaners">
+                    <img>
                         <span class="placeholder-icon">🤖</span>
                         <span class="placeholder-label">Coming soon</span>
                     </div>
@@ -908,7 +900,6 @@
                     </div>
                 </div>
 
-                <!-- Existing: Wings Of Redemption -->
                 <div class="project-card" onclick="openProjectModal('proyecto1')">
                     <img src="PgWoR.png" alt="Wings Of Redemption" class="project-image">
                     <div class="project-content">
@@ -919,7 +910,6 @@
                     </div>
                 </div>
 
-                <!-- Existing: Ratting Around -->
                 <div class="project-card" onclick="openProjectModal('proyecto2')">
                     <img src="RattinAround.png" alt="Ratting Around" class="project-image">
                     <div class="project-content">
@@ -933,7 +923,6 @@
             </div>
         </div>
 
-        <!-- Skills -->
         <div class="skills-section" id="skills">
             <h2 class="skills-title">My Skills</h2>
             <div class="skills-categories">
@@ -1001,30 +990,33 @@
                 description: "Game presented at Tecnojam 2026. You play as a video game developer living under an authoritarian government that is heavily censoring creative content. Your goal is to develop a video game despite the government's constant blocks and restrictions.",
                 role: "Game Developer",
                 technologies: ["Unity", "C#"],
-                period: "Game Jam",
+                period: "1 Month (Tecnojam 2026)",
                 features: [
                     "Puzzle-based gameplay",
                     "Narrative driven experience",
-                    "Censorship and creativity as core themes",
-                    "Developed under Game Jam time pressure"
+                    "Censorship and creativity as core themes"
                 ],
-                contribution: "Developed for Tecnojam 2026. Full development of puzzle mechanics and game logic.",
-                media: []
+                contribution: "Developed for Tecnojam 2026. Full development of mail entrys and mail load system using json files",
+                media: [
+                    { type: 'image', src: "MoralPanic_Gif1.gif" },
+                    { type: 'image', src: "MoralPanic_Gif2.gif" },
+                    { type: 'image', src: "MoralPanic_Gif13.gif" },
+                ]
             },
             cubeClearners: {
                 title: "Cube Cleaners",
                 subtitle: "1v1v1v1 party game",
-                description: "A chaotic 1v1v1v1 party game where each player controls a robot that must collect trash from the map and bring it back to their own base. The catch: other players can stun you and steal your garbage, making every run a risk.",
+                description: "A chaotic 1v1v1v1 party game where each player controls a robot that must collect trash from the map and bring it back to their own base. Where other players can stun you and steal your garbage.",
                 role: "Game Developer",
                 technologies: ["Unity", "C#"],
-                period: "TBD",
+                period: "2 Months",
                 features: [
                     "4-player local multiplayer",
                     "Stun and steal mechanics",
                     "Fast-paced and chaotic",
                     "Strategy and risk management"
                 ],
-                contribution: "Core gameplay mechanics, robot controls, stun system and multiplayer logic.",
+                contribution: "Core gameplay mechanics, VFX.",
                 media: []
             },
             proyecto1: {
