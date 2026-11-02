@@ -1,1229 +1,512 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jan Capdevila Moizé - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            scroll-behavior: smooth;
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(147, 112, 219, 0.6);
-            border-radius: 50%;
-            animation: float 15s infinite ease-in-out;
-            box-shadow: 0 0 10px rgba(147, 112, 219, 0.8);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            50% { transform: translateY(-100vh) translateX(50px); }
-        }
-
-        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
-        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
-        .particle:nth-child(4) { left: 40%; animation-delay: 1s; }
-        .particle:nth-child(5) { left: 50%; animation-delay: 3s; }
-        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
-        .particle:nth-child(7) { left: 70%; animation-delay: 2.5s; }
-        .particle:nth-child(8) { left: 80%; animation-delay: 4.5s; }
-        .particle:nth-child(9) { left: 90%; animation-delay: 1.5s; }
-        .particle:nth-child(10) { left: 15%; animation-delay: 3.5s; }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(15, 12, 41, 0.85);
-            backdrop-filter: blur(15px);
-            z-index: 2000;
-            padding: 1rem 0;
-            border-bottom: 2px solid rgba(147, 112, 219, 0.4);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            color: white;
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(147, 112, 219, 0.8);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .nav-link {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #9370db, #ba55d3);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #ba55d3;
-            text-shadow: 0 0 10px rgba(186, 85, 211, 0.6);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-            margin-top: 80px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 5rem;
-            color: white;
-        }
-
-        .profile-photo {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            margin: 0 auto 2.5rem;
-            border: 5px solid rgba(147, 112, 219, 0.5);
-            box-shadow: 
-                0 0 30px rgba(147, 112, 219, 0.6),
-                0 0 60px rgba(186, 85, 211, 0.4),
-                inset 0 0 20px rgba(147, 112, 219, 0.2);
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4.5rem;
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-            animation: pulse 3s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(147, 112, 219, 0.6), 0 0 60px rgba(186, 85, 211, 0.4); }
-            50% { box-shadow: 0 0 50px rgba(147, 112, 219, 0.8), 0 0 100px rgba(186, 85, 211, 0.6); }
-        }
-
-        .profile-photo::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, rgba(147, 112, 219, 0.4), transparent 30%);
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
-
-        .profile-photo:hover {
-            transform: scale(1.08) rotate(5deg);
-            border-color: rgba(186, 85, 211, 0.8);
-        }
-
-        .name {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff, #ba55d3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 5px 15px rgba(186, 85, 211, 0.3);
-            animation: fadeInUp 1s ease;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .description {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .projects-section { margin: 5rem 0; }
-
-        .projects-title {
-            text-align: center;
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 3.5rem;
-            font-weight: 800;
-            text-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .projects-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #9370db, transparent);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            background: rgba(30, 30, 60, 0.6);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            border: 2px solid rgba(147, 112, 219, 0.3);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            color: white;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(147, 112, 219, 0.2), transparent);
-            transition: left 0.6s;
-        }
-
-        .project-card:hover::before { left: 100%; }
-
-        .project-card:hover {
-            transform: translateY(-20px) scale(1.03);
-            box-shadow: 
-                0 30px 60px rgba(147, 112, 219, 0.4),
-                0 0 30px rgba(186, 85, 211, 0.3);
-            border-color: rgba(186, 85, 211, 0.8);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 25px 25px 0 0;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image { transform: scale(1.1); }
-
-        /* Placeholder image for projects without real image */
-        .project-image-placeholder {
-            width: 100%;
-            height: 220px;
-            border-radius: 25px 25px 0 0;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 0.8rem;
-            overflow: hidden;
-        }
-
-        .project-card:hover .project-image-placeholder { transform: scale(1.05); }
-
-        .placeholder-moral-panic {
-            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 40%, #0d1117 100%);
-        }
-
-        .placeholder-cube-cleaners {
-            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 40%, #0f2744 100%);
-        }
-
-        .placeholder-icon {
-            font-size: 4rem;
-            filter: drop-shadow(0 0 15px rgba(147, 112, 219, 0.8));
-            animation: floatIcon 3s ease-in-out infinite;
-        }
-
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .placeholder-label {
-            color: rgba(255,255,255,0.4);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Badge "JAM" */
-        .project-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, #ff6b35, #f7c59f);
-            color: #1a0a00;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            z-index: 10;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.5);
-        }
-
-        .project-content {
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #ba55d3;
-        }
-
-        .project-description {
-            opacity: 0.9;
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-
-        .skills-section { margin: 5rem 0; }
-
-        .skills-title {
-            text-align: center;
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 3.5rem;
-            font-weight: 800;
-            text-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .skills-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #9370db, transparent);
-        }
-
-        .skills-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .skill-category {
-            background: rgba(30, 30, 60, 0.6);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 2.5rem;
-            border: 2px solid rgba(147, 112, 219, 0.3);
-            transition: all 0.5s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(147, 112, 219, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .skill-category:hover::before {
-            opacity: 1;
-            animation: rotate 6s linear infinite;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(147, 112, 219, 0.4);
-            border-color: rgba(186, 85, 211, 0.8);
-        }
-
-        .category-title {
-            color: white;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
-            text-shadow: 0 0 15px rgba(147, 112, 219, 0.5);
-        }
-
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .skill-item {
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.2), rgba(186, 85, 211, 0.2));
-            border: 2px solid rgba(147, 112, 219, 0.4);
-            border-radius: 15px;
-            padding: 1rem 1.5rem;
-            color: white;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(186, 85, 211, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.4s, height 0.4s;
-        }
-
-        .skill-item:hover::before { width: 200%; height: 200%; }
-
-        .skill-item:hover {
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.4), rgba(186, 85, 211, 0.4));
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(147, 112, 219, 0.4);
-            border-color: #ba55d3;
-        }
-
-        .contact-section {
-            text-align: center;
-            margin: 5rem 0;
-            color: white;
-        }
-
-        .contact-title {
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            font-weight: 800;
-            text-shadow: 0 0 20px rgba(147, 112, 219, 0.6);
-            position: relative;
-            display: inline-block;
-        }
-
-        .contact-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #9370db, transparent);
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 3.5rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            background: rgba(30, 30, 60, 0.6);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 2rem 2.5rem;
-            border: 2px solid rgba(147, 112, 219, 0.3);
-            transition: all 0.4s ease;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            min-width: 220px;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-link::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(147, 112, 219, 0.3), transparent);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-            border-radius: 50%;
-        }
-
-        .contact-link:hover::before { width: 300%; height: 300%; }
-
-        .contact-link:hover {
-            transform: translateY(-8px) scale(1.08);
-            box-shadow: 0 20px 45px rgba(147, 112, 219, 0.5);
-            border-color: rgba(186, 85, 211, 0.8);
-        }
-
-        .contact-icon {
-            font-size: 2.2rem;
-            position: relative;
-            z-index: 1;
-            filter: drop-shadow(0 0 10px rgba(147, 112, 219, 0.6));
-        }
-
-        .contact-text {
-            font-weight: 700;
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(15px);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .modal.show { display: flex; }
-
-        .modal-content {
-            background: linear-gradient(135deg, rgba(30, 30, 60, 0.95), rgba(20, 20, 40, 0.95));
-            backdrop-filter: blur(25px);
-            border-radius: 30px;
-            padding: 3.5rem;
-            max-width: 95vw;
-            width: 1200px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.4s ease;
-            border: 2px solid rgba(147, 112, 219, 0.4);
-            box-shadow: 0 30px 100px rgba(147, 112, 219, 0.4);
-            scrollbar-width: thin;
-            scrollbar-color: rgba(147, 112, 219, 0.7) rgba(20, 20, 40, 0.9);
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-content::-webkit-scrollbar { width: 14px; }
-        .modal-content::-webkit-scrollbar-track { background: rgba(20, 20, 40, 0.9); border-radius: 10px; margin: 5px 0; }
-        .modal-content::-webkit-scrollbar-thumb { background: linear-gradient(180deg, rgba(147, 112, 219, 0.7), rgba(186, 85, 211, 0.9)); border-radius: 10px; border: 3px solid rgba(20, 20, 40, 0.9); }
-        .modal-content::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, rgba(147, 112, 219, 0.9), rgba(186, 85, 211, 1)); }
-
-        .close-btn {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(186, 85, 211, 0.2);
-            border: 2px solid rgba(186, 85, 211, 0.5);
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: white;
-            transition: all 0.3s ease;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-btn:hover {
-            background: rgba(186, 85, 211, 0.4);
-            transform: rotate(90deg) scale(1.1);
-            box-shadow: 0 0 20px rgba(186, 85, 211, 0.6);
-        }
-
-        .project-header {
-            margin-bottom: 2.5rem;
-            border-bottom: 3px solid rgba(147, 112, 219, 0.4);
-            padding-bottom: 2rem;
-        }
-
-        .project-title-main {
-            color: white;
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin-bottom: 0.7rem;
-            text-shadow: 0 0 25px rgba(147, 112, 219, 0.6);
-        }
-
-        .project-subtitle {
-            color: #ba55d3;
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-        }
-
-        .project-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-            margin-top: 2rem;
-        }
-
-        .meta-item {
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.15), rgba(186, 85, 211, 0.15));
-            border-radius: 15px;
-            padding: 1.3rem;
-            border-left: 5px solid #ba55d3;
-            transition: all 0.3s ease;
-        }
-
-        .meta-item:hover {
-            transform: translateX(5px);
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.25), rgba(186, 85, 211, 0.25));
-        }
-
-        .meta-label {
-            color: #ba55d3;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .meta-value {
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .content-section {
-            background: rgba(40, 40, 70, 0.5);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 2px solid rgba(147, 112, 219, 0.3);
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .content-section:hover {
-            border-color: rgba(186, 85, 211, 0.6);
-            box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
-        }
-
-        .section-title {
-            color: #ba55d3;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.7rem;
-            border-bottom: 2px solid rgba(147, 112, 219, 0.4);
-        }
-
-        .section-content {
-            color: rgba(255, 255, 255, 0.95);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .section-content ul { padding-left: 1.5rem; margin: 0.8rem 0; }
-        .section-content li { margin-bottom: 0.7rem; }
-
-        .gallery-section {
-            background: rgba(25, 25, 45, 0.7);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 2px solid rgba(147, 112, 219, 0.3);
-            margin-bottom: 2rem;
-        }
-
-        .gallery-display {
-            background: rgba(10, 10, 20, 0.6);
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 1.5rem;
-            border: 2px solid rgba(147, 112, 219, 0.2);
-            height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-main {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-main img, .gallery-main iframe {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .gallery-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1.5rem;
-        }
-
-        .gallery-thumbnails {
-            display: flex;
-            gap: 0.8rem;
-            flex: 1;
-            overflow-x: auto;
-            padding: 0.8rem 0;
-        }
-
-        .gallery-thumbnail {
-            width: 90px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            opacity: 0.5;
-            transition: all 0.4s ease;
-            border: 3px solid transparent;
-            flex-shrink: 0;
-        }
-
-        .gallery-thumbnail.active {
-            opacity: 1;
-            border-color: #ba55d3;
-            box-shadow: 0 0 20px rgba(186, 85, 211, 0.6);
-        }
-
-        .gallery-thumbnail:hover { opacity: 1; transform: scale(1.1); }
-
-        .nav-button {
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.3), rgba(186, 85, 211, 0.3));
-            border: 2px solid rgba(147, 112, 219, 0.5);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s ease;
-            margin: 0 0.8rem;
-            font-weight: 700;
-            font-size: 1.3rem;
-        }
-
-        .nav-button:hover {
-            background: linear-gradient(135deg, rgba(147, 112, 219, 0.6), rgba(186, 85, 211, 0.6));
-            transform: scale(1.15);
-            box-shadow: 0 5px 20px rgba(186, 85, 211, 0.5);
-        }
-
-        @media (max-width: 768px) {
-            .name { font-size: 2.8rem; }
-            .description { font-size: 1.1rem; }
-            .skills-categories { grid-template-columns: 1fr; }
-            .contact-links { flex-direction: column; align-items: center; gap: 1.5rem; }
-            .project-meta { grid-template-columns: 1fr; }
-            .modal-content { padding: 2rem; }
-            .project-title-main { font-size: 2.2rem; }
-            .gallery-display { height: 280px; }
-            .nav-links { gap: 1.5rem; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jan Capdevila Moizé – Game Programmer</title>
+<meta name="description" content="Portfolio of Jan Capdevila Moizé, game programmer working in Unity and C#.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --ink: #1a1f2b;
+    --muted: #5a6273;
+    --line: #dde2ec;
+    --accent: #2f5bea;
+    --accent-ink: #ffffff;
+    --accent-soft: #e8edff;
+    --todo: #fff1a8;
+    --radius-lg: 14px;
+    --radius-sm: 6px;
+    --wrap: 1080px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+  h1[tabindex="-1"]:focus { outline: none; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  h1, h2, h3 { font-family: "Bricolage Grotesque", sans-serif; line-height: 1.1; }
+
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+  /* Things still to fill in. Remove the TODO text in the data below once done. */
+  mark.todo { background: var(--todo); color: var(--ink); padding: 0 4px; border-radius: 3px; }
+
+  /* Nav */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(244, 246, 250, .92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { font: 700 18px "Bricolage Grotesque", sans-serif; text-decoration: none; }
+  .nav ul { display: flex; gap: 24px; list-style: none; font-size: 15px; }
+  .nav ul a { text-decoration: none; color: var(--muted); }
+  .nav ul a:hover { color: var(--ink); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 700 15px "Atkinson Hyperlegible", sans-serif;
+    padding: 11px 18px; border-radius: 999px;
+    text-decoration: none; border: 1.5px solid var(--ink);
+    background: transparent; color: var(--ink); cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .btn:hover { background: var(--ink); color: var(--surface); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.primary:hover { background: #1f45c4; border-color: #1f45c4; }
+  .btn svg { width: 17px; height: 17px; flex: none; }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; }
+  .hero .wrap { display: grid; grid-template-columns: 1fr 260px; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(44px, 7vw, 80px); font-weight: 800; letter-spacing: -0.03em; }
+  .hero .lead { font-size: 21px; color: var(--muted); max-width: 34ch; margin-top: 20px; }
+  .hero .lead strong { color: var(--ink); font-weight: 700; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .photo {
+    width: 260px; aspect-ratio: 1; border-radius: 50%;
+    object-fit: cover; background: var(--accent-soft);
+    border: 6px solid var(--surface);
+    box-shadow: 0 0 0 1.5px var(--line);
+  }
+
+  /* Sections */
+  section.block { padding: 56px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+  .section-head h2 { font-size: 34px; letter-spacing: -0.02em; }
+  .section-head p { color: var(--muted); font-size: 15px; }
+
+  /* Project grid */
+  .projects { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; }
+  .card { grid-column: span 2; }
+  .card.featured { grid-column: span 3; }
+  .card a {
+    display: flex; flex-direction: column; height: 100%;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius-lg); overflow: hidden; text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  .card a:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .media {
+    aspect-ratio: 16 / 9; background: var(--accent-soft); overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .media img { width: 100%; height: 100%; object-fit: cover; }
+  .media .fallback { font: 800 28px "Bricolage Grotesque", sans-serif; color: var(--accent); padding: 16px; text-align: center; }
+  .card .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .card h3 { font-size: 22px; }
+  .card .one { color: var(--muted); font-size: 15px; }
+  .card .more { margin-top: auto; padding-top: 10px; font-size: 14px; font-weight: 700; color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin-top: 4px; }
+  .tags li { font-size: 12.5px; padding: 2px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .skill-group { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px; }
+  .skill-group h3 { font-size: 15px; color: var(--muted); font-family: "Atkinson Hyperlegible", sans-serif; font-weight: 700; margin-bottom: 10px; }
+  .skill-group ul { list-style: none; }
+  .skill-group li { padding: 3px 0; }
+  .skill-group.main li { font: 700 26px/1.2 "Bricolage Grotesque", sans-serif; }
+
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .about p { max-width: 60ch; }
+  .about .edu { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px; }
+  .about .edu strong { display: block; font: 700 19px/1.25 "Bricolage Grotesque", sans-serif; margin-bottom: 4px; }
+  .about .edu span { color: var(--muted); font-size: 15px; }
+
+  /* Contact */
+  .contact { background: var(--ink); color: var(--surface); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  .contact h2 { font-size: 40px; letter-spacing: -0.02em; }
+  .contact p { color: #c4cad6; margin-top: 10px; max-width: 42ch; }
+  .contact .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .contact .btn { border-color: #4a5165; color: var(--surface); justify-content: center; }
+  .contact .btn:hover { background: var(--surface); color: var(--ink); border-color: var(--surface); }
+  .contact .btn.primary { grid-column: span 2; background: var(--accent); border-color: var(--accent); }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
+
+  /* Project detail view */
+  #detail { display: none; padding: 32px 0 72px; }
+  body.is-detail #home { display: none; }
+  body.is-detail #detail { display: block; }
+  .back { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 15px; margin-bottom: 24px; }
+  .back:hover { color: var(--ink); }
+  .detail-head h1 { font-size: clamp(40px, 6vw, 64px); font-weight: 800; letter-spacing: -0.03em; }
+  .detail-head .tagline { font-size: 20px; color: var(--muted); margin-top: 10px; }
+  .detail-hero { margin: 32px 0; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 9; background: var(--accent-soft); display: grid; place-items: center; }
+  .detail-hero img { width: 100%; height: 100%; object-fit: cover; }
+  .detail-grid { display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; }
+  .detail-grid h2 { font-size: 24px; margin: 28px 0 10px; }
+  .detail-grid h2:first-child { margin-top: 0; }
+  .detail-grid p { max-width: 65ch; }
+  .detail-grid ul.built { padding-left: 20px; }
+  .detail-grid ul.built li { margin-bottom: 8px; max-width: 62ch; }
+  .detail-grid ul.built li::marker { color: var(--accent); }
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 22px; position: sticky; top: 88px; }
+  .facts dl { display: grid; gap: 12px; margin-bottom: 20px; }
+  .facts dt { font-size: 13px; color: var(--muted); }
+  .facts dd { font-weight: 700; }
+  .facts .btn { width: 100%; justify-content: center; margin-top: 8px; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .gallery img { border-radius: var(--radius-sm); border: 1px solid var(--line); aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+  .pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .pager a { text-decoration: none; display: flex; flex-direction: column; gap: 2px; }
+  .pager a span { font-size: 13px; color: var(--muted); }
+  .pager a strong { font: 700 20px "Bricolage Grotesque", sans-serif; }
+  .pager a:hover strong { color: var(--accent); }
+  .pager .next { text-align: right; margin-left: auto; }
+
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; gap: 32px; }
+    .photo { width: 160px; order: -1; }
+    .projects { grid-template-columns: 1fr 1fr; }
+    .card, .card.featured { grid-column: span 1; }
+    .skills { grid-template-columns: 1fr 1fr; }
+    .about { grid-template-columns: 1fr; }
+    .contact { grid-template-columns: 1fr; padding: 32px 24px; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .facts { position: static; }
+  }
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    .nav ul { gap: 16px; font-size: 14px; }
+    .nav ul li.hide-sm { display: none; }
+    .hero { padding: 40px 0; }
+    .hero .lead { font-size: 18px; }
+    .projects, .skills { grid-template-columns: 1fr; }
+    .section-head { flex-direction: column; gap: 4px; }
+    .contact .links { grid-template-columns: 1fr; }
+    .contact .btn.primary { grid-column: span 1; }
+    .pager { flex-direction: column; }
+  }
+</style>
 </head>
 <body>
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">Jan Capdevila</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li class="hide-sm"><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="cv.html">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="home">
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <h1>Jan Capdevila Moizé</h1>
+        <p class="lead"><strong>Game programmer working in Unity and C#.</strong> I study Video Game Design and Production at TecnoCampus and build games that are fun to play and clean to read.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">See my games</a>
+          <a class="btn" href="cv.html">Read my resume</a>
+        </div>
+      </div>
+      <img class="photo" src="perfil.jpg" alt="Portrait of Jan Capdevila">
     </div>
+  </header>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">Jan Capdevila</div>
-            <div class="nav-links">
-                <a class="nav-link" onclick="scrollToSection('projects')">Projects</a>
-                <a class="nav-link" onclick="scrollToSection('skills')">Skills</a>
-                <a class="nav-link" onclick="scrollToSection('contact')">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="header">
-            <div class="profile-photo">
-                <img src="perfil.jpg" alt="Profile Photo" style="width:100%; height:100%; border-radius:50%;">
-            </div>
-            <h1 class="name">Jan Capdevila Moizé</h1>
-            <p class="description">
-                I am a game design and development of videogames student specialized in Unity and C#. I love creating interactive and immersive experiences that players can enjoy. I'm always looking foreward to learn more and more to improve my skills and do my best when developing an experience.
-            </p>
-        </div>
-
-        <div class="projects-section" id="projects">
-            <h2 class="projects-title">My Projects</h2>
-            <div class="projects-grid">
-
-                <div class="project-card" onclick="openProjectModal('moralPanic')">
-                    <img src="MoralPanic_Gif1.gif" alt="Moral Panic" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Moral Panic</h3>
-                        <p class="project-description">
-                            Puzzle game presented at Tecnojam 2026
-                        </p>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="openProjectModal('cubeClearners')">
-                    <img src="CubeCleaners1.png" alt="Moral Panic" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Cube Cleaners</h3>
-                        <p class="project-description">
-                            1v1v1v1 party game — robots collecting trash
-                        </p>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="openProjectModal('proyecto1')">
-                    <img src="PgWoR.png" alt="Wings Of Redemption" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Wings Of Redemption</h3>
-                        <p class="project-description">
-                            Autorruner platformer
-                        </p>
-                    </div>
-                </div>
-
-                <div class="project-card" onclick="openProjectModal('proyecto2')">
-                    <img src="RattinAround.png" alt="Ratting Around" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Ratting Around</h3>
-                        <p class="project-description">
-                            Stealth 2D Game developed with Lua
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="skills-section" id="skills">
-            <h2 class="skills-title">My Skills</h2>
-            <div class="skills-categories">
-                <div class="skill-category">
-                    <h3 class="category-title">Code</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">C#</div>
-                        <div class="skill-item">C++</div>
-                        <div class="skill-item">Lua</div>
-                        <div class="skill-item">Unity</div>
-                        <div class="skill-item">Unreal</div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="category-title">Production</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">Git</div>
-                        <div class="skill-item">3dsMax</div>
-                        <div class="skill-item">MudBox</div>
-                        <div class="skill-item">Substance Painter</div>
-                        <div class="skill-item">Visual Studio</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Open a game to see what I built and how.</p>
+      </div>
+      <div class="projects" id="project-grid"></div>
     </div>
+  </section>
 
-    <!-- Contact -->
-    <div class="contact-section" id="contact">
-        <h2 class="contact-title">Connect with me</h2>
-        <div class="contact-links">
-            <a href="mailto:jcapdevilamoize@gmail.com" class="contact-link" target="_blank">
-                <span class="contact-icon">✉️</span>
-                <span class="contact-text">Gmail</span>
-            </a>
-            <a href="https://www.linkedin.com/in/jan-capdevila-moize-992948389/" class="contact-link" target="_blank">
-                <span class="contact-icon">💼</span>
-                <span class="contact-text">LinkedIn</span>
-            </a>
-            <a href="https://github.com/Goan125" class="contact-link" target="_blank">
-                <span class="contact-icon">🐙</span>
-                <span class="contact-text">GitHub</span>
-            </a>
-            <a href="https://goan125.itch.io/" class="contact-link" target="_blank">
-                <span class="contact-icon">🎮</span>
-                <span class="contact-text">Itch.io</span>
-            </a>
-        </div>
+  <section class="block" id="skills">
+    <div class="wrap">
+      <div class="section-head"><h2>Skills</h2></div>
+      <div class="skills">
+        <div class="skill-group main"><h3>Main</h3><ul><li>Unity</li><li>C#</li></ul></div>
+        <div class="skill-group"><h3>Also used</h3><ul><li>Lua</li><li>C++ (learning)</li><li>Unreal Engine (basics)</li></ul></div>
+        <div class="skill-group"><h3>Tools</h3><ul><li>Git and GitHub</li><li>Visual Studio</li></ul></div>
+        <div class="skill-group"><h3>3D and art</h3><ul><li>3ds Max</li><li>Mudbox</li><li>Substance Painter</li></ul></div>
+      </div>
     </div>
+  </section>
 
-    <!-- Modal -->
-    <div class="modal" id="projectModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('projectModal')">&times;</button>
-            <div id="projectModalContent"></div>
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="section-head"><h2>About me</h2></div>
+      <div class="about">
+        <p>I love creating interactive experiences that players enjoy, and I'm always looking to learn more and improve my skills. Most of my work is in Unity and C#, from university projects to game jams, and I'm now learning C++ to understand what happens under the engine.</p>
+        <div class="edu">
+          <strong>Bachelor's Degree in Video Game Design and Production</strong>
+          <span>TecnoCampus (Universitat Pompeu Fabra), Mataró</span>
         </div>
+      </div>
     </div>
+  </section>
 
-    <script>
-        let currentProjectImages = [];
-        let currentProjectVideos = [];
-        let currentImageIndex = 0;
-        let currentVideoIndex = 0;
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Let's talk</h2>
+          <p>I'm looking for a game programming internship. Write to me or find my work on these sites.</p>
+        </div>
+        <div class="links">
+          <!-- Replace YOUR_EMAIL with your Gmail address -->
+          <a class="btn primary" href="mailto:YOUR_EMAIL@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Email me
+          </a>
+          <a class="btn" href="https://goan125.itch.io/" target="_blank" rel="noopener">itch.io</a>
+          <a class="btn" href="https://github.com/Goan125" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/jan-capdevila-moize-992948389/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="cv.html">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-        const projectsData = {
-            moralPanic: {
-                title: "Moral Panic",
-                subtitle: "Puzzle game — Tecnojam 2026",
-                description: "Game presented at Tecnojam 2026. You play as a video game developer living under an authoritarian government that is heavily censoring creative content. Your goal is to develop a video game despite the government's constant blocks and restrictions.",
-                role: "Game Developer",
-                technologies: ["Unity", "C#"],
-                period: "1 Month (Tecnojam 2026)",
-                features: [
-                    "Puzzle-based gameplay",
-                    "Narrative driven experience",
-                    "Censorship and creativity as core themes"
-                ],
-                contribution: "Developed for Tecnojam 2026. Full development of mail entrys and mail load system using json files",
-                media: [
-                    { type: 'image', src: "MoralPanic_Gif1.gif" },
-                    { type: 'image', src: "MoralPanic_Gif2.gif" },
-                    { type: 'image', src: "MoralPanic_Gif3.gif" },
-                ]
-            },
-            cubeClearners: {
-                title: "Cube Cleaners",
-                subtitle: "1v1v1v1 party game",
-                description: "A chaotic 1v1v1v1 party game where each player controls a robot that must collect trash from the map and bring it back to their own base. Where other players can stun you and steal your garbage.",
-                role: "Game Developer",
-                technologies: ["Unity", "C#"],
-                period: "2 Months",
-                features: [
-                    "4-player local multiplayer",
-                    "Stun and steal mechanics",
-                    "Fast-paced and chaotic",
-                    "Strategy and risk management"
-                ],
-                contribution: "Core gameplay mechanics, VFX.",
-                media: []
-            },
-            proyecto1: {
-                title: "Wings Of Redemption",
-                subtitle: "Autorruner speed based platformer",
-                description: "Game developed for Tecnocampus  - CREATION AND DEVELOPMENT PROJECT II",
-                role: "Game Developer",
-                technologies: ["Unity", "Photoshop"],
-                period: "4 Weeks",
-                features: [
-                    "Fast paced",
-                    "Reflex game",
-                    "Trial and error",
-                    "Precision game"
-                ],
-                contribution: "In this project, I was responsible for developing and implementing the core gameplay mechanics that revolved around the character and the obstacles. Additionally, I contributed in the art by creating background textures, and also the player's animations",
-                media: [
-                    { type: 'image', src: "PgWoR.png" },
-                    { type: 'image', src: "PgWoR2.png" },
-                    { type: 'image', src: "PgWoR3.png" },
-                    { type: 'image', src: "PgWoR4.png" },
-                    { type: 'video', src: "4resa98Q6Lo" }
-                ]
-            },
-            proyecto2: {
-                title: "Ratting around",
-                subtitle: "Stealth based game",
-                description: "Stealth videogame where you take the place of a rat during the Black Death, you have to avoid getting caught while infecting all the houses of the map.",
-                role: "Game Developer",
-                technologies: ["Lua", "Visual Studio Code"],
-                period: "2 Weeks",
-                features: [
-                    "Stealth experience",
-                    "Strategy game",
-                    "Humor",
-                    "Short Game"
-                ],
-                contribution: "My main contribution was developing the enemy AI and the minigames.",
-                media: [
-                    { type: 'image', src: "RattinAround.png" },
-                    { type: 'image', src: "RattinAround2.png" },
-                    { type: 'image', src: "RattinAround3.png" }
-                ]
-            }
-        };
+<main id="detail" aria-live="polite"></main>
 
-        function openProjectModal(projectType) {
-            const project = projectsData[projectType];
-            
-            currentProjectImages = project.media.filter(m => m.type === 'image');
-            currentProjectVideos = project.media.filter(m => m.type === 'video');
-            currentImageIndex = 0;
-            currentVideoIndex = 0;
-            
-            document.getElementById('projectModalContent').innerHTML = `
-                <div class="project-header">
-                    <h1 class="project-title-main">${project.title}</h1>
-                    <div class="project-subtitle">${project.subtitle}</div>
-                    <p class="section-content">${project.description}</p>
-                    
-                    <div class="project-meta">
-                        <div class="meta-item">
-                            <div class="meta-label">Role</div>
-                            <div class="meta-value">${project.role}</div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-label">Technologies</div>
-                            <div class="meta-value">${project.technologies.join(', ')}</div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-label">Development Period</div>
-                            <div class="meta-value">${project.period}</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="content-section">
-                    <h3 class="section-title">About the Project</h3>
-                    <div class="section-content">
-                        <p>${project.description}</p>
-                        <h4>Main Features:</h4>
-                        <ul>
-                            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="content-section">
-                    <h3 class="section-title">My Contribution</h3>
-                    <div class="section-content">
-                        <p>${project.contribution}</p>
-                    </div>
-                </div>
-                
-                ${currentProjectImages.length > 0 ? `
-                    <div class="gallery-section">
-                        <h3 class="section-title">Image Gallery</h3>
-                        <div class="gallery-display">
-                            <div class="gallery-main" id="imageGalleryMain">
-                                ${renderImage(currentProjectImages[0])}
-                            </div>
-                        </div>
-                        ${currentProjectImages.length > 1 ? `
-                            <div class="gallery-nav">
-                                <button class="nav-button" onclick="previousImage()">‹</button>
-                                <div class="gallery-thumbnails">
-                                    ${currentProjectImages.map((image, index) => `
-                                        <img src="${image.src}" 
-                                             class="gallery-thumbnail ${index === 0 ? 'active' : ''}" 
-                                             alt="Image ${index + 1}"
-                                             onclick="changeImage(${index})">
-                                    `).join('')}
-                                </div>
-                                <button class="nav-button" onclick="nextImage()">›</button>
-                            </div>
-                        ` : ''}
-                    </div>
-                ` : ''}
-                
-                ${currentProjectVideos.length > 0 ? `
-                    <div class="gallery-section">
-                        <h3 class="section-title">Video Gallery</h3>
-                        <div class="gallery-display">
-                            <div class="gallery-main" id="videoGalleryMain">
-                                ${renderVideo(currentProjectVideos[0])}
-                            </div>
-                        </div>
-                        ${currentProjectVideos.length > 1 ? `
-                            <div class="gallery-nav">
-                                <button class="nav-button" onclick="previousVideo()">‹</button>
-                                <div class="gallery-thumbnails">
-                                    ${currentProjectVideos.map((video, index) => `
-                                        <img src="https://img.youtube.com/vi/${video.src}/hqdefault.jpg" 
-                                             class="gallery-thumbnail ${index === 0 ? 'active' : ''}" 
-                                             alt="Video ${index + 1}"
-                                             onclick="changeVideo(${index})">
-                                    `).join('')}
-                                </div>
-                                <button class="nav-button" onclick="nextVideo()">›</button>
-                            </div>
-                        ` : ''}
-                    </div>
-                ` : ''}
-            `;
-            document.getElementById('projectModal').classList.add('show');
-        }
+<footer>
+  <div class="wrap">Jan Capdevila Moizé, 2026</div>
+</footer>
 
-        function renderImage(image) {
-            return `<img src="${image.src}" alt="Project image" style="width:100%; height:100%; object-fit:contain;">`;
-        }
+<script>
+/*
+  EDIT YOUR GAMES HERE.
+  Anything starting with "TODO:" shows up highlighted in yellow on the site.
+  Replace it with real text (or delete the line) before sharing the page.
+  Images are file names in this same repository.
+*/
+const PROJECTS = [
+  {
+    id: "moral-panic",
+    title: "Moral Panic",
+    featured: true,
+    oneLiner: "Puzzle game made at Tecnojam 2026.",
+    tagline: "A puzzle game made for Tecnojam 2026, the TecnoCampus game jam.",
+    tags: ["Unity", "C#", "Game jam"],
+    cover: "MoralPanic_Gif1.gif",
+    gallery: ["MoralPanic_Gif2.gif", "MoralPanic_Gif3.gif"],
+    facts: {
+      "Made for": "Tecnojam 2026",
+      "Engine": "Unity, C#",
+      "My role": "TODO: e.g. Gameplay programmer",
+      "Team": "TODO: e.g. 4 people",
+      "Duration": "TODO: e.g. 48 hours"
+    },
+    about: "TODO: two or three sentences on the game: the jam theme, what the player does, and what makes the puzzles interesting.",
+    built: [
+      "TODO: something you programmed, e.g. the puzzle logic and win conditions",
+      "TODO: another one, e.g. the level flow and restart system"
+    ],
+    links: { itch: "https://goan125.itch.io/", github: "" }
+  },
+  {
+    id: "cube-cleaners",
+    title: "Cube Cleaners",
+    featured: true,
+    oneLiner: "1v1v1v1 party game where robots collect trash.",
+    tagline: "A 4-player free-for-all: robots race to clean up the most trash.",
+    tags: ["Unity", "C#", "Local multiplayer"],
+    cover: "CubeCleaners1.png",
+    gallery: [],
+    facts: {
+      "Made for": "University course project",
+      "Engine": "Unity, C#",
+      "Players": "4, local",
+      "My role": "TODO: e.g. Gameplay programmer",
+      "Team": "TODO: e.g. 3 people"
+    },
+    about: "TODO: two or three sentences on how a match plays out and what makes it fun with friends.",
+    built: [
+      "TODO: e.g. input handling for 4 players",
+      "TODO: e.g. robot movement and trash pickup",
+      "TODO: e.g. scoring and end-of-round screen"
+    ],
+    links: { itch: "https://goan125.itch.io/", github: "" }
+  },
+  {
+    id: "matasanos",
+    title: "Matasanos",
+    featured: false,
+    oneLiner: "TODO: one line on the game.",
+    tagline: "TODO: one sentence on what the game is.",
+    tags: ["Unity", "C#", "Team project"],
+    cover: "",
+    gallery: [],
+    facts: {
+      "Made for": "University class project",
+      "Engine": "Unity, C#",
+      "Genre": "TODO",
+      "My role": "TODO",
+      "Team": "TODO"
+    },
+    about: "TODO: two or three sentences on the game.",
+    built: [
+      "TODO: something you programmed",
+      "TODO: another one"
+    ],
+    links: { itch: "https://unagranota.itch.io/matasanos", github: "" }
+  },
+  {
+    id: "wings-of-redemption",
+    title: "Wings Of Redemption",
+    featured: false,
+    oneLiner: "Auto-runner platformer.",
+    tagline: "An auto-runner platformer.",
+    tags: ["Platformer"],
+    cover: "PgWoR.png",
+    gallery: ["PgWoR2.png", "PgWoR3.png", "PgWoR4.png"],
+    facts: {
+      "Genre": "Auto-runner platformer",
+      "Engine": "TODO",
+      "My role": "TODO"
+    },
+    about: "TODO: two or three sentences on the game.",
+    built: [
+      "TODO: something you programmed"
+    ],
+    links: { itch: "https://goan125.itch.io/", github: "" }
+  },
+  {
+    id: "ratting-around",
+    title: "Ratting Around",
+    featured: false,
+    oneLiner: "2D stealth game written in Lua.",
+    tagline: "A 2D stealth game written in Lua.",
+    tags: ["Lua", "2D", "Stealth"],
+    cover: "RattinAround.png",
+    gallery: ["RattinAround2.png", "RattinAround3.png", "RattinAround4.png"],
+    facts: {
+      "Genre": "2D stealth",
+      "Language": "Lua",
+      "My role": "TODO"
+    },
+    about: "TODO: two or three sentences on the game.",
+    built: [
+      "TODO: something you programmed, e.g. enemy vision cones"
+    ],
+    links: { itch: "https://goan125.itch.io/", github: "" }
+  }
+];
 
-        function renderVideo(video) {
-            return `
-                <iframe src="https://www.youtube.com/embed/${video.src}" 
-                        style="width:100%; height:100%; border:none;"
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                </iframe>
-            `;
-        }
+/* ---------- Rendering (no need to edit below) ---------- */
 
-        function changeImage(index) { currentImageIndex = index; updateImageDisplay(); }
-        function previousImage() { currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentProjectImages.length - 1; updateImageDisplay(); }
-        function nextImage() { currentImageIndex = currentImageIndex < currentProjectImages.length - 1 ? currentImageIndex + 1 : 0; updateImageDisplay(); }
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const txt = s => {
+  const v = String(s || "");
+  return v.startsWith("TODO") ? `<mark class="todo">${esc(v.replace(/^TODO:?\s*/, "") || "To fill in")}</mark>` : esc(v);
+};
+const media = (p, cls = "") => p.cover
+  ? `<img src="${esc(p.cover)}" alt="${esc(p.title)} screenshot" loading="lazy" ${cls}>`
+  : `<span class="fallback">${esc(p.title)}</span>`;
 
-        function updateImageDisplay() {
-            const imageMain = document.getElementById('imageGalleryMain');
-            const thumbnails = document.querySelectorAll('.gallery-section:nth-of-type(1) .gallery-thumbnail');
-            if (imageMain && currentProjectImages[currentImageIndex]) {
-                imageMain.innerHTML = renderImage(currentProjectImages[currentImageIndex]);
-            }
-            thumbnails.forEach((thumb, index) => { thumb.classList.toggle('active', index === currentImageIndex); });
-        }
+function renderGrid() {
+  document.getElementById("project-grid").innerHTML = PROJECTS.map(p => `
+    <article class="card${p.featured ? " featured" : ""}">
+      <a href="#/${p.id}">
+        <div class="media">${media(p)}</div>
+        <div class="body">
+          <h3>${esc(p.title)}</h3>
+          <p class="one">${txt(p.oneLiner)}</p>
+          <ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+          <span class="more">Read more</span>
+        </div>
+      </a>
+    </article>`).join("");
+}
 
-        function changeVideo(index) { currentVideoIndex = index; updateVideoDisplay(); }
-        function previousVideo() { currentVideoIndex = currentVideoIndex > 0 ? currentVideoIndex - 1 : currentProjectVideos.length - 1; updateVideoDisplay(); }
-        function nextVideo() { currentVideoIndex = currentVideoIndex < currentProjectVideos.length - 1 ? currentVideoIndex + 1 : 0; updateVideoDisplay(); }
+function renderDetail(p) {
+  const i = PROJECTS.indexOf(p);
+  const prev = PROJECTS[(i - 1 + PROJECTS.length) % PROJECTS.length];
+  const next = PROJECTS[(i + 1) % PROJECTS.length];
+  const facts = Object.entries(p.facts).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${txt(v)}</dd></div>`).join("");
+  const gallery = p.gallery.length
+    ? `<h2>Screenshots</h2><div class="gallery">${p.gallery.map(g => `<img src="${esc(g)}" alt="${esc(p.title)} screenshot" loading="lazy">`).join("")}</div>`
+    : "";
+  document.getElementById("detail").innerHTML = `
+    <div class="wrap">
+      <a class="back" href="#projects">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        All projects
+      </a>
+      <div class="detail-head">
+        <h1 tabindex="-1">${esc(p.title)}</h1>
+        <p class="tagline">${txt(p.tagline)}</p>
+      </div>
+      <div class="detail-hero">${media(p)}</div>
+      <div class="detail-grid">
+        <div>
+          <h2>About the game</h2>
+          <p>${txt(p.about)}</p>
+          <h2>What I built</h2>
+          <ul class="built">${p.built.map(b => `<li>${txt(b)}</li>`).join("")}</ul>
+          ${gallery}
+        </div>
+        <aside class="facts">
+          <dl>${facts}</dl>
+          ${p.links.itch ? `<a class="btn primary" href="${esc(p.links.itch)}" target="_blank" rel="noopener">Play on itch.io</a>` : ""}
+          ${p.links.github ? `<a class="btn" href="${esc(p.links.github)}" target="_blank" rel="noopener">View the code</a>` : ""}
+        </aside>
+      </div>
+      <nav class="pager" aria-label="More projects">
+        <a href="#/${prev.id}"><span>Previous</span><strong>${esc(prev.title)}</strong></a>
+        <a class="next" href="#/${next.id}"><span>Next</span><strong>${esc(next.title)}</strong></a>
+      </nav>
+    </div>`;
+}
 
-        function updateVideoDisplay() {
-            const videoMain = document.getElementById('videoGalleryMain');
-            const thumbnails = document.querySelectorAll('.gallery-section:nth-of-type(2) .gallery-thumbnail');
-            if (videoMain && currentProjectVideos[currentVideoIndex]) {
-                videoMain.innerHTML = renderVideo(currentProjectVideos[currentVideoIndex]);
-            }
-            thumbnails.forEach((thumb, index) => { thumb.classList.toggle('active', index === currentVideoIndex); });
-        }
+let lastProject = null;
+function route() {
+  const m = location.hash.match(/^#\/([\w-]+)/);
+  const p = m && PROJECTS.find(x => x.id === m[1]);
+  if (p) {
+    renderDetail(p);
+    lastProject = p.id;
+    document.body.classList.add("is-detail");
+    document.title = `${p.title} – Jan Capdevila Moizé`;
+    window.scrollTo(0, 0);
+    document.querySelector("#detail h1").focus({ preventScroll: true });
+  } else {
+    const wasDetail = document.body.classList.contains("is-detail");
+    document.body.classList.remove("is-detail");
+    document.title = "Jan Capdevila Moizé – Game Programmer";
+    if (wasDetail && location.hash === "#projects" && lastProject) {
+      const card = document.querySelector(`a[href="#/${lastProject}"]`);
+      if (card) { card.scrollIntoView({ block: "center" }); card.focus({ preventScroll: true }); }
+    }
+  }
+}
 
-        function closeModal(modalId) { document.getElementById(modalId).classList.remove('show'); }
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && document.body.classList.contains("is-detail")) location.hash = "#projects";
+});
 
-        window.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) { e.target.classList.remove('show'); }
-        });
-
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) { section.scrollIntoView({ behavior: 'smooth' }); }
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal.show').forEach(modal => { modal.classList.remove('show'); });
-            }
-        });
-    </script>
+renderGrid();
+window.addEventListener("hashchange", route);
+route();
+</script>
 </body>
 </html>
