@@ -10,14 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f4f6fa;
-    --surface: #ffffff;
-    --ink: #1a1f2b;
-    --muted: #5a6273;
-    --line: #dde2ec;
-    --accent: #2f5bea;
-    --accent-ink: #ffffff;
-    --accent-soft: #e8edff;
+    --bg: #0e1117;
+    --surface: #161a23;
+    --raised: #1d2230;
+    --ink: #e9ecf3;
+    --muted: #98a1b3;
+    --line: #2a3141;
+    --accent: #6b8cff;
+    --accent-hover: #8aa4ff;
+    --accent-ink: #0e1117;
+    --accent-soft: #1f2a4a;
     --todo: #fff1a8;
     --radius-lg: 14px;
     --radius-sm: 6px;
@@ -29,6 +31,8 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 
   h1[tabindex="-1"]:focus { outline: none; }
+
+  :root { color-scheme: dark; }
 
   body {
     background: var(--bg);
@@ -44,12 +48,12 @@
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 
   /* Things still to fill in. Remove the TODO text in the data below once done. */
-  mark.todo { background: var(--todo); color: var(--ink); padding: 0 4px; border-radius: 3px; }
+  mark.todo { background: var(--todo); color: #1a1f2b; padding: 0 4px; border-radius: 3px; }
 
   /* Nav */
   .nav {
     position: sticky; top: 0; z-index: 10;
-    background: rgba(244, 246, 250, .92);
+    background: rgba(14, 17, 23, .88);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
@@ -64,13 +68,13 @@
     display: inline-flex; align-items: center; gap: 8px;
     font: 700 15px "Atkinson Hyperlegible", sans-serif;
     padding: 11px 18px; border-radius: 999px;
-    text-decoration: none; border: 1.5px solid var(--ink);
+    text-decoration: none; border: 1.5px solid var(--line);
     background: transparent; color: var(--ink); cursor: pointer;
     transition: background .15s, color .15s;
   }
-  .btn:hover { background: var(--ink); color: var(--surface); }
+  .btn:hover { background: var(--ink); color: var(--bg); }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-  .btn.primary:hover { background: #1f45c4; border-color: #1f45c4; }
+  .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--accent-ink); }
   .btn svg { width: 17px; height: 17px; flex: none; }
 
   /* Hero */
@@ -132,13 +136,13 @@
   .about .edu span { color: var(--muted); font-size: 15px; }
 
   /* Contact */
-  .contact { background: var(--ink); color: var(--surface); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  .contact { background: var(--raised); color: var(--ink); border: 1px solid var(--line); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
   .contact h2 { font-size: 40px; letter-spacing: -0.02em; }
-  .contact p { color: #c4cad6; margin-top: 10px; max-width: 42ch; }
-  .contact .links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .contact .btn { border-color: #4a5165; color: var(--surface); justify-content: center; }
-  .contact .btn:hover { background: var(--surface); color: var(--ink); border-color: var(--surface); }
-  .contact .btn.primary { grid-column: span 2; background: var(--accent); border-color: var(--accent); }
+  .contact p { color: var(--muted); margin-top: 10px; max-width: 42ch; }
+  .contact .links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .contact .btn { border-color: var(--line); color: var(--ink); justify-content: center; }
+  .contact .btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .contact .btn.primary { grid-column: 1 / -1; background: var(--accent); border-color: var(--accent); }
 
   footer { padding: 32px 0 48px; color: var(--muted); font-size: 14px; }
 
@@ -166,7 +170,7 @@
   .facts .btn { width: 100%; justify-content: center; margin-top: 8px; }
   .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
   .gallery img { border-radius: var(--radius-sm); border: 1px solid var(--line); aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
-  .video { aspect-ratio: 16 / 9; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--line); background: var(--ink); }
+  .video { aspect-ratio: 16 / 9; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--line); background: #000; }
   .video iframe { width: 100%; height: 100%; border: 0; display: block; }
   .pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
   .pager a { text-decoration: none; display: flex; flex-direction: column; gap: 2px; }
@@ -196,7 +200,7 @@
     .projects, .skills { grid-template-columns: 1fr; }
     .section-head { flex-direction: column; gap: 4px; }
     .contact .links { grid-template-columns: 1fr; }
-    .contact .btn.primary { grid-column: span 1; }
+    .contact .btn.primary { grid-column: 1 / -1; }
     .pager { flex-direction: column; }
   }
 </style>
@@ -210,7 +214,6 @@
       <li><a href="#projects">Projects</a></li>
       <li class="hide-sm"><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="cv.html">Resume</a></li>
     </ul>
   </div>
 </nav>
@@ -223,7 +226,6 @@
         <p class="lead"><strong>Game programmer working in Unity and C#.</strong> I study Video Game Design and Production at TecnoCampus and build games that are fun to play and clean to read.</p>
         <div class="actions">
           <a class="btn primary" href="#projects">See my games</a>
-          <a class="btn" href="cv.html">Read my resume</a>
         </div>
       </div>
       <img class="photo" src="perfil.jpg" alt="Portrait of Jan Capdevila">
@@ -273,7 +275,7 @@
           <p>I'm looking for a game programming internship. Write to me or find my work on these sites.</p>
         </div>
         <div class="links">
-          <!-- Replace YOUR_EMAIL with your Gmail address -->
+          
           <a class="btn primary" href="mailto:jcapdevilamoize@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             Email me
@@ -281,7 +283,6 @@
           <a class="btn" href="https://goan125.itch.io/" target="_blank" rel="noopener">itch.io</a>
           <a class="btn" href="https://github.com/Goan125" target="_blank" rel="noopener">GitHub</a>
           <a class="btn" href="https://www.linkedin.com/in/jan-capdevila-moize-992948389/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="cv.html">Resume</a>
         </div>
       </div>
     </div>
@@ -333,9 +334,9 @@ const PROJECTS = [
   {
     id: "matasanos",
     title: "Matasanos",
-    featured: false,
+    featured: true,
     oneLiner: "Online co-op game: run an interstellar health care center.",
-    tagline: "Join up to 4 friends at an interstellar health care center and save the aliens' lives before it's too late.",
+    tagline: "Team up with up to 3 friends at an interstellar health care center and save the aliens' lives before it's too late.",
     tags: ["Unity", "C#", "Online co-op"],
     cover: "Matasanos1.png",
     gallery: ["Matasanos2.png", "Matasanos3.png"],
@@ -362,7 +363,7 @@ const PROJECTS = [
   {
     id: "cube-cleaners",
     title: "Cube Cleaners",
-    featured: true,
+    featured: false,
     oneLiner: "Chaotic 1v1v1v1 party game where robots fight over trash.",
     tagline: "Four robots, one messy map. Collect the most trash, and steal the rest.",
     tags: ["Unity", "C#", "Local multiplayer"],
