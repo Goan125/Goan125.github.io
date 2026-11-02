@@ -166,6 +166,8 @@
   .facts .btn { width: 100%; justify-content: center; margin-top: 8px; }
   .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
   .gallery img { border-radius: var(--radius-sm); border: 1px solid var(--line); aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+  .video { aspect-ratio: 16 / 9; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--line); background: var(--ink); }
+  .video iframe { width: 100%; height: 100%; border: 0; display: block; }
   .pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); }
   .pager a { text-decoration: none; display: flex; flex-direction: column; gap: 2px; }
   .pager a span { font-size: 13px; color: var(--muted); }
@@ -295,6 +297,7 @@
 <script>
 /*
   EDIT YOUR GAMES HERE.
+  video: a YouTube video id (the part after "v=" in the link), or "" for none.
   Anything starting with "TODO:" shows up highlighted in yellow on the site.
   Replace it with real text (or delete the line) before sharing the page.
   Images are file names in this same repository.
@@ -304,22 +307,26 @@ const PROJECTS = [
     id: "moral-panic",
     title: "Moral Panic",
     featured: true,
-    oneLiner: "Puzzle game made at Tecnojam 2026.",
-    tagline: "A puzzle game made for Tecnojam 2026, the TecnoCampus game jam.",
+    oneLiner: "Narrative puzzle game about making a game under censorship.",
+    tagline: "You're a game developer under an authoritarian government. Finish your game despite the censors.",
     tags: ["Unity", "C#", "Game jam"],
     cover: "MoralPanic_Gif1.gif",
     gallery: ["MoralPanic_Gif2.gif", "MoralPanic_Gif3.gif"],
+    video: "",
     facts: {
       "Made for": "Tecnojam 2026",
+      "My role": "Game developer",
       "Engine": "Unity, C#",
-      "My role": "TODO: e.g. Gameplay programmer",
-      "Team": "TODO: e.g. 4 people",
-      "Duration": "TODO: e.g. 48 hours"
+      "Development time": "1 month"
     },
-    about: "TODO: two or three sentences on the game: the jam theme, what the player does, and what makes the puzzles interesting.",
+    about: "Game presented at Tecnojam 2026. You play as a video game developer living under an authoritarian government that heavily censors creative content. Your goal is to finish your game despite the government's constant blocks and restrictions.",
+    features: [
+      "Puzzle-based gameplay",
+      "Narrative-driven experience",
+      "Censorship and creativity as core themes"
+    ],
     built: [
-      "TODO: something you programmed, e.g. the puzzle logic and win conditions",
-      "TODO: another one, e.g. the level flow and restart system"
+      "Built the in-game mail system: mail entries and the system that loads them from JSON files"
     ],
     links: { itch: "https://goan125.itch.io/", github: "" }
   },
@@ -327,23 +334,29 @@ const PROJECTS = [
     id: "cube-cleaners",
     title: "Cube Cleaners",
     featured: true,
-    oneLiner: "1v1v1v1 party game where robots collect trash.",
-    tagline: "A 4-player free-for-all: robots race to clean up the most trash.",
+    oneLiner: "Chaotic 1v1v1v1 party game where robots fight over trash.",
+    tagline: "Four robots, one messy map. Collect the most trash, and steal the rest.",
     tags: ["Unity", "C#", "Local multiplayer"],
     cover: "CubeCleaners1.png",
     gallery: [],
+    video: "",
     facts: {
       "Made for": "University course project",
+      "My role": "Game developer",
       "Engine": "Unity, C#",
       "Players": "4, local",
-      "My role": "TODO: e.g. Gameplay programmer",
-      "Team": "TODO: e.g. 3 people"
+      "Development time": "2 months"
     },
-    about: "TODO: two or three sentences on how a match plays out and what makes it fun with friends.",
+    about: "A chaotic 1v1v1v1 party game where each player controls a robot that collects trash around the map and brings it back to their own base. Other players can stun you and steal your garbage on the way.",
+    features: [
+      "4-player local multiplayer",
+      "Stun and steal mechanics",
+      "Fast-paced and chaotic matches",
+      "Strategy and risk management"
+    ],
     built: [
-      "TODO: e.g. input handling for 4 players",
-      "TODO: e.g. robot movement and trash pickup",
-      "TODO: e.g. scoring and end-of-round screen"
+      "Core gameplay mechanics",
+      "Visual effects (VFX)"
     ],
     links: { itch: "https://goan125.itch.io/", github: "" }
   },
@@ -356,17 +369,18 @@ const PROJECTS = [
     tags: ["Unity", "C#", "Team project"],
     cover: "",
     gallery: [],
+    video: "",
     facts: {
       "Made for": "University class project",
       "Engine": "Unity, C#",
       "Genre": "TODO",
       "My role": "TODO",
-      "Team": "TODO"
+      "Development time": "TODO"
     },
     about: "TODO: two or three sentences on the game.",
+    features: [],
     built: [
-      "TODO: something you programmed",
-      "TODO: another one"
+      "TODO: something you programmed"
     ],
     links: { itch: "https://unagranota.itch.io/matasanos", github: "" }
   },
@@ -374,19 +388,28 @@ const PROJECTS = [
     id: "wings-of-redemption",
     title: "Wings Of Redemption",
     featured: false,
-    oneLiner: "Auto-runner platformer.",
-    tagline: "An auto-runner platformer.",
-    tags: ["Platformer"],
+    oneLiner: "Speed-based auto-runner platformer.",
+    tagline: "A fast auto-runner platformer about reflexes and precision.",
+    tags: ["Unity", "Platformer"],
     cover: "PgWoR.png",
     gallery: ["PgWoR2.png", "PgWoR3.png", "PgWoR4.png"],
+    video: "4resa98Q6Lo",
     facts: {
-      "Genre": "Auto-runner platformer",
-      "Engine": "TODO",
-      "My role": "TODO"
+      "Made for": "TecnoCampus, Creation and Development Project II",
+      "My role": "Game developer",
+      "Tools": "Unity, Photoshop",
+      "Development time": "4 weeks"
     },
-    about: "TODO: two or three sentences on the game.",
+    about: "A speed-based auto-runner platformer developed for the TecnoCampus course Creation and Development Project II.",
+    features: [
+      "Fast-paced",
+      "Reflex-based",
+      "Trial and error",
+      "Precision platforming"
+    ],
     built: [
-      "TODO: something you programmed"
+      "Developed and implemented the core gameplay mechanics around the character and the obstacles",
+      "Created background textures and the player's animations"
     ],
     links: { itch: "https://goan125.itch.io/", github: "" }
   },
@@ -394,19 +417,27 @@ const PROJECTS = [
     id: "ratting-around",
     title: "Ratting Around",
     featured: false,
-    oneLiner: "2D stealth game written in Lua.",
-    tagline: "A 2D stealth game written in Lua.",
+    oneLiner: "Stealth game: play as a rat during the Black Death.",
+    tagline: "Play as a rat during the Black Death. Infect every house without getting caught.",
     tags: ["Lua", "2D", "Stealth"],
     cover: "RattinAround.png",
     gallery: ["RattinAround2.png", "RattinAround3.png", "RattinAround4.png"],
+    video: "",
     facts: {
-      "Genre": "2D stealth",
-      "Language": "Lua",
-      "My role": "TODO"
+      "My role": "Game developer",
+      "Tools": "Lua, Visual Studio Code",
+      "Development time": "2 weeks"
     },
-    about: "TODO: two or three sentences on the game.",
+    about: "A stealth game where you take the place of a rat during the Black Death. You have to avoid getting caught while infecting every house on the map.",
+    features: [
+      "Stealth experience",
+      "Strategy",
+      "Humor",
+      "Short game"
+    ],
     built: [
-      "TODO: something you programmed, e.g. enemy vision cones"
+      "Enemy AI",
+      "The minigames"
     ],
     links: { itch: "https://goan125.itch.io/", github: "" }
   }
@@ -444,7 +475,10 @@ function renderDetail(p) {
   const next = PROJECTS[(i + 1) % PROJECTS.length];
   const facts = Object.entries(p.facts).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${txt(v)}</dd></div>`).join("");
   const gallery = p.gallery.length
-    ? `<h2>Screenshots</h2><div class="gallery">${p.gallery.map(g => `<img src="${esc(g)}" alt="${esc(p.title)} screenshot" loading="lazy">`).join("")}</div>`
+    ? `<h2>Screenshots</h2><div class="gallery">${p.gallery.map(g => `<a href="${esc(g)}" target="_blank" rel="noopener"><img src="${esc(g)}" alt="${esc(p.title)} screenshot" loading="lazy"></a>`).join("")}</div>`
+    : "";
+  const video = p.video
+    ? `<h2>Gameplay video</h2><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${esc(p.video)}" title="${esc(p.title)} gameplay video" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>`
     : "";
   document.getElementById("detail").innerHTML = `
     <div class="wrap">
@@ -461,8 +495,10 @@ function renderDetail(p) {
         <div>
           <h2>About the game</h2>
           <p>${txt(p.about)}</p>
+          ${p.features.length ? `<h2>Main features</h2><ul class="built">${p.features.map(f => `<li>${txt(f)}</li>`).join("")}</ul>` : ""}
           <h2>What I built</h2>
           <ul class="built">${p.built.map(b => `<li>${txt(b)}</li>`).join("")}</ul>
+          ${video}
           ${gallery}
         </div>
         <aside class="facts">
